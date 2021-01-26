@@ -9,6 +9,9 @@ const provider = new ethers.providers.InfuraProvider(
   process.env.INFURA_API_KEY,
 );
 
+// let url = 'http://192.168.1.25:18545';
+// let provider = new ethers.providers.JsonRpcProvider(url);
+
 function getWallet(): Wallet {
   let mnemonic = process.env.MNEMONIC;
   if (mnemonic == null) {
