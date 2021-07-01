@@ -89,5 +89,14 @@ program
     console.log('Balance:', ethers.utils.formatUnits(balance, decimals));
   });
 
+program.command('sign_message <data>').action(async (data: string, options) => {
+  let wallet = await getWallet();
+  let signature = await wallet.signMessage(data);
+  console.log('Sig', signature);
+
+  let recoveredAddress = ethers.utils.verifyMessage(data, signature);
+  console.log('Address', recoveredAddress);
+});
+
 dotenv.config();
 program.parse(process.argv);
