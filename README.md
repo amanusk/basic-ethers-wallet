@@ -45,6 +45,12 @@ Transfer ERC20 from wallet
 ts-node ./src/index.ts transfer_token <token_address> <to> <amount>
 ```
 
+Chat reader: Read messages from/to an address over time
+
+```
+ts-node ./src/chat-reader.ts
+```
+
 ## Thanks
 
 If you like it than you soulda put a start ⭐ on it
