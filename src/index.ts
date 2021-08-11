@@ -100,4 +100,21 @@ program.command("sign_message <data>").action(async (data: string, options) => {
   console.log("Address", recoveredAddress);
 });
 
+program.command("send_hex_message <text> [to]").action(async (text: string, to: string, options) => {
+  let wallet = getWallet();
+  if (to == undefined) {
+    to = wallet.address;
+  }
+
+  let tx = {
+    to: to,
+    data: ethers.utils.toUtf8Bytes(text),
+  };
+
+  let tx_rec = await wallet.sendTransaction(tx);
+  console.log(`Transaction at: https://${NETWORK}.etherscan.io/tx/${tx_rec.hash}`);
+  await tx_rec.wait(1);
+  console.log("Tx mined");
+});
+
 program.parse(process.argv);
